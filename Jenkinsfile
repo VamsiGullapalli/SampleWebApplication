@@ -35,6 +35,17 @@ pipeline {
                 echo "${params.TomcatURL}"
                 echo "${params.contextpath}"
                 input ''
+                echo "${params.TomcatURL}/${params.contextpath}"
+                emailext body: 'approve', recipientProviders: [requestor()], subject: 'build status', to: 'learndevops202201@gmail.com'
+                
+            }
+        }     
+        stage('deploy') {
+            steps {
+                echo "deploying to Tomcat URL"
+                echo "${params.TomcatURL}"
+                echo "${params.contextpath}"
+                input ''
                 deploy adapters: [tomcat9(credentialsId: 'tomcat-deploy', path: '', url: "${params.TomcatURL}")], contextPath: "${params.contextpath}", onFailure: false, war: '**/*.war'
                 echo 'URL to access application is' 
                 echo "${params.TomcatURL}/${params.contextpath}"
