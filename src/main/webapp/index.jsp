@@ -5,6 +5,6 @@
 <h2>welcome to devops-dev</h2>
   
 <h2>checking new feature dev-01</h2>
-<h2>checking cred</h2>
+<h2>Hotfix complete</h2>
 </body>
 </html>
